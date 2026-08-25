@@ -74,32 +74,13 @@ module.exports.woff2BrowserPlugin = () => {
         ];
       </script>
 
-      <!-- Preload all default fonts to avoid swap on init -->
+      <!-- Only preload the LCP font (the welcome-screen heading paints in
+           Excalifont). Other fonts (canvas + UI) are fetched on demand when
+           the app registers them; preloading them here just competed with the
+           LCP font, the stylesheet and the entry JS for boot bandwidth. -->
       <link
         rel="preload"
         href="/fonts/Excalifont/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin="anonymous"
-      />
-      <!-- For Nunito only preload the latin range, which should be good enough for now -->
-      <link
-        rel="preload"
-        href="/fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="${OSS_FONTS_CDN}fonts/Assistant/Assistant-SemiBold.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin="anonymous"
-      />
-      <link
-        rel="preload"
-        href="/fonts/ComicShanns/ComicShanns-Regular-279a7b317d12eb88de06167bd672b4b4.woff2"
         as="font"
         type="font/woff2"
         crossorigin="anonymous"
