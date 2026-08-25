@@ -67,17 +67,17 @@ module.exports.woff2BrowserPlugin = () => {
         return code.replace(
           "<!-- PLACEHOLDER:EXCALIDRAW_APP_FONTS -->",
           `<script>
-        // point into our CDN in prod, fallback to root (excalidraw.com) domain in case of issues
+        // serve fonts same-origin in prod (avoids a cross-origin connection on the boot path), CDN as fallback
         window.EXCALIDRAW_ASSET_PATH = [
-          "${OSS_FONTS_CDN}",
           "${OSS_FONTS_FALLBACK}",
+          "${OSS_FONTS_CDN}",
         ];
       </script>
 
       <!-- Preload all default fonts to avoid swap on init -->
       <link
         rel="preload"
-        href="${OSS_FONTS_CDN}fonts/Excalifont/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2"
+        href="/fonts/Excalifont/Excalifont-Regular-a88b72a24fb54c9f94e3b5fdaa7481c9.woff2"
         as="font"
         type="font/woff2"
         crossorigin="anonymous"
@@ -85,7 +85,7 @@ module.exports.woff2BrowserPlugin = () => {
       <!-- For Nunito only preload the latin range, which should be good enough for now -->
       <link
         rel="preload"
-        href="${OSS_FONTS_CDN}fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2"
+        href="/fonts/Nunito/Nunito-Regular-XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTQ3j6zbXWjgeg.woff2"
         as="font"
         type="font/woff2"
         crossorigin="anonymous"
@@ -99,7 +99,7 @@ module.exports.woff2BrowserPlugin = () => {
       />
       <link
         rel="preload"
-        href="${OSS_FONTS_CDN}fonts/ComicShanns/ComicShanns-Regular-279a7b317d12eb88de06167bd672b4b4.woff2"
+        href="/fonts/ComicShanns/ComicShanns-Regular-279a7b317d12eb88de06167bd672b4b4.woff2"
         as="font"
         type="font/woff2"
         crossorigin="anonymous"
