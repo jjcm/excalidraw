@@ -117,10 +117,11 @@ export default defineConfig(({ mode }) => {
               return `locales/${id.substring(index + 8)}`;
             }
 
-            if (id.includes("@excalidraw/mermaid-to-excalidraw")) {
-              return "mermaid-to-excalidraw";
-            }
-
+            // NOTE: don't assign @excalidraw/mermaid-to-excalidraw a manual
+            // chunk — same as CodeMirrorEditor below, Rollup would hoist a
+            // static import of it from the main bundle, putting the whole
+            // mermaid runtime on the initial load path. Left unassigned, it
+            // becomes a naturally lazy dynamic-import chunk.
             if (id.includes("@codemirror/") || id.includes("@lezer/")) {
               return "codemirror.chunk";
             }
